@@ -2,6 +2,7 @@ services:
   - type: web
     name: document-analysis-api
     env: docker
+    rootDir: backend
     plan: free
     healthCheckPath: /health
     envVars:
