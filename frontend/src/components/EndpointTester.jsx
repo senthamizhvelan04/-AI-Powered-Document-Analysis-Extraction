@@ -9,7 +9,7 @@ import { useState, useRef } from 'react'
  */
 export default function EndpointTester() {
   const [endpointUrl, setEndpointUrl] = useState(
-    `${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/document-analyze`
+    `${import.meta.env.VITE_API_URL || window.location.origin}/api/document-analyze`
   )
   const [apiKey, setApiKey] = useState('')
   const [file, setFile] = useState(null)

@@ -11,7 +11,7 @@ export default function UploadPanel({ onResult }) {
   const [file, setFile] = useState(null)
   const [apiKey, setApiKey] = useState('')
   const [backendUrl, setBackendUrl] = useState(
-    import.meta.env.VITE_API_URL || 'http://localhost:8000'
+    import.meta.env.VITE_API_URL || window.location.origin
   )
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')

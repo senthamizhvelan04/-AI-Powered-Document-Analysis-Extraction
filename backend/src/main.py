@@ -18,6 +18,7 @@ load_dotenv()
 
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 from src.auth import validate_api_key
 from src.models import DocumentRequest, DocumentResponse, EntitiesResponse, ErrorResponse
@@ -195,3 +196,11 @@ async def analyze_document(
                 "message": f"Internal server error: {str(exc)}"
             }
         )
+
+# Mount the static frontend build at the root
+frontend_dist = os.path.join(os.path.dirname(__file__), "..", "..", "frontend", "dist")
+if os.path.isdir(frontend_dist):
+    logger.info("Mounting frontend/dist for single-server deployment")
+    app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="static")
+else:
+    logger.warning("frontend/dist not found. The UI will not be served.")

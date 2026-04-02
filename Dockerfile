@@ -17,6 +17,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application source code from the backend folder
 COPY backend/src/ ./src/
 
+# Copy the pre-built React frontend
+COPY frontend/dist/ /app/frontend/dist/
+
 EXPOSE 8000
 
 # Run with Uvicorn
